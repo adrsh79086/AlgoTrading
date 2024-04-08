@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks</title>
+
+    <!---Style For Header Section---->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #212121;
+            padding: 10px 20px;
+        }
+        .logo img {
+            width: 100px;
+        }
+        .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+        }
+        .menu li {
+            margin-right: 20px;
+            margin: 15px;
+        }
+        .menu li:last-child {
+            margin-right: 0;
+        }
+        .menu a {
+            text-decoration: none;
+            color: #f1f1f1;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .menu a:hover {
+            color: #4CAF50; 
+        }
+
+        .menu-icon {
+            display: none; 
+        }
+        @media only screen and (max-width: 768px) {
+            .menu {
+                display: none; 
+            }
+            .menu.show-menu {
+                display: flex; 
+                flex-direction: column; 
+                position: absolute;
+                top: 75px; 
+                left: 300px; 
+                background-color: #f1f1f1; 
+                border-radius: 5px; 
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+                padding: 10px;
+            }
+            .menu-icon {
+                display: block; 
+            }
+            .menu-icon img {
+                width: 30px; 
+                cursor: pointer;
+            }
+        }
+    </style>
+
+    <!--Style For Footer Section-->
+        <style>
+            .footer {
+                background-color: #212121;
+                padding: 20px;
+                text-align: left;
+                display: flex;
+                color: #f1f1f1;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+
+            .column {
+                flex-basis: 30%;
+                margin-bottom: 20px;
+            }
+
+            .feedback-form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-message {
+                display: none;
+            }
+
+            .textarea-container {
+                margin-bottom: 10px;
+                align-self: flex-start; 
+                text-align: start; 
+            }
+
+            .textarea-container textarea {
+                width: 200%;
+                height: 100px;
+                resize: none;
+            }
+
+            .form-button {
+                width: 100px;
+                padding: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .form-button:hover {
+                background-color: #45a049;
+            }
+
+            .form-message {
+                color: green;
+            }
+
+            .form-message.error {
+                color: red;
+            }
+
+            .footer-logo {
+                width: 80px;
+                margin-bottom: 10px;
+            }
+
+            .column p {
+                text-align: justify;
+            }
+
+            .about-button {
+                width: 100px;
+                padding: 10px;
+                font-size: 12px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                text-decoration: none;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .about-button:hover {
+                background-color: #45a049;
+            }
+
+            .menu {
+                list-style-type: none;
+                padding: 0;
+                margin-top: 10px;
+            }
+
+            .menu li {
+                display: inline;
+                margin-right: 10px;
+            }
+
+            .menu li a {
+                text-decoration: none;
+                color: #7c7b7b;
+                transition: color 0.3s;
+            }
+
+            .footer .menu li a:hover {
+                color: #4CAF50;
+            }
+
+
+            .social-media-container {
+                display: flex;
+                justify-content: start;
+                margin-top: 20px;
+            }
+
+            .social-media-icon {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 24px;
+                color: #212121;
+                background-color: #ddd;
+                border-radius: 50%;
+                margin-right: 10px;
+                text-align: center;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            @media only screen and (max-width: 768px) {
+                .footer .column {
+                flex-basis: 100%;
+                text-align: center;
+                align-items: center;
+            }
+
+            .social-media-container {
+                display: flex;
+                justify-content: center; 
+                margin-top: 20px;
+            }
+
+            .textarea-container {
+                width: 50%;
+                margin-bottom: 10px;
+                margin-right: auto;
+                align-self: center; 
+                text-align: center; 
+            }
+
+            .footer .menu {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+            }
+
+            .footer .menu li {
+                margin-bottom: 10px;
+            }
+
+            .footer .menu li a {
+                color: #7c7b7b;
+            }
+
+        }
+
+    </style>
+
+    <!---Style For News Section----> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    
+        .heading {
+            flex: 1;
+            text-align: left;
+            margin-left: 40px;
+        }
+    
+        .News {
+            margin-left: 40px;
+            margin-top: 20px;
+            text-align: center;
+        }
+    
+        .Trending {
+            margin-left: 40px;
+            margin-top: 20px;
+        }
+    
+        .content-container {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            margin: 0 40px;
+        }
+    
+        .box {
+            background-color: #212121;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 10px;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+    
+        .box .info {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            margin-right: 20px;
+        }
+    
+        .image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50px;
+        }
+    
+        .title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #f1f1f1;
+        }
+    
+        .subtitle {
+            margin-bottom: 5px;
+            font-size: small;
+            color: dimgrey;
+        }
+    
+        .extra-title {
+            font-size: 14px;
+            margin-left: 100px;
+            color: #f1f1f1;
+        }
+    
+        .title-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: auto;
+            margin-left: 20px;
+        }
+    
+        /* Media Queries */
+        @media only screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+    
+            .content-container {
+                flex-direction: column;
+                align-items: center;
+                margin: 0;
+            }
+    
+            .News {
+                margin-left: 0;
+            }
+
+            .box {
+            margin-bottom: 10px;
+            }
+        }
+        @media only screen and (max-width: 576px) {
+            .title-box {
+                margin-left: 10px;
+            }
+            .box {
+            margin-bottom: 10px;
+            }
+        }
+    </style>
+    
+
+    <!--Style For Trending Section-->
+    <style>
+        .trending-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-left: 40px;
+            margin-right: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .trending-box {
+            flex: 0 0 calc(25% - 10px);
+            background-color:#212121; 
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            padding: 20px;
+        }
+
+        .trending-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .image img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .title-box {
+            margin-left: 20px;
+        }
+
+        .title {
+            font-weight: bold;
+            color: #f1f1f1;
+        }
+
+        .subtitle {
+            color: #d3d3d3;
+        }
+
+        .trending-extra-title {
+            color: #f1f1f1;
+            margin-left: 100px;
+            font-size: 14px;
+        }
+
+        .watch-market-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            width: 90%;
+            margin-left: 18px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .watch-market-button:hover {
+            background-color: #45a049;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .trending-box {
+                flex-basis: calc(50% - 10px);
+            }
+        }
+
+        @media only screen and (max-width: 576px) {
+            .trending-box {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+
+    <!---Style For Stocks Section-->
+    <style>
+        .Stocks{
+            margin-left: 40px;
+        }
+        .stocks-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 20px 40px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .stocks-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background-color: #f1f1f1;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0;
+        }
+        .stock-item {
+            flex: 1;
+            text-align: center;
+        }
+        .stock-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .stock-item.negative-growth {
+            color: red;
+        }
+
+        .stock-item.positive-growth {
+            color: green;
+        }
+
+        .d,.d1,.d2,.d3{
+            color: inherit;
+         text-decoration: none;
+          font-size: 24px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <!--Header Section-->
+    <header class="header">
+        <div class="logo">
+            <img src="tds.png" alt="TDS Logo">
+        </div>
+        <ul class="menu">
+             <li><a href="mainDashboard.html">Dashboard</a></li>
+            <li><a href="A1.html">About</a></li>
+            <li><a href="stocks.html">Stocks</a></li>
+            <li><a href="algo.html">Algo</a></li>
+            <li><a href="C1.html">Contact</a></li>
+            <li><a href="profile.html">Profile</a></li>
+        </ul>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <img src="/menu-icon.png" alt="Menu">
+        </div>
+    </header>
+
+    <!--News Section-->
+    <div class="container">
+        <div class="News">
+          <h2>News</h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="content-container">
+          <div class="box">
+            <div class="info">
+              <div class="image">
+                <img src="/Adani.png" alt="Adani" style="width: 40px; height: 40px; border-radius: 50px;">
+              </div>
+              <div class="title-box">
+                <div class="title">Adani Enterprises</div>
+                <div class="subtitle">Mining</div>
+              </div>
+            </div>
+            <div class="extra-title">-0.75%</div>
+          </div>
+          <div class="box">
+            <div class="info">
+              <div class="image">
+                <img src="/Infosys.png" alt="Infosys" style="width: 40px; height: 40px; border-radius: 50px;">
+              </div>
+              <div class="title-box">
+                <div class="title">Infosys</div>
+                <div class="subtitle">IT</div>
+              </div>
+            </div>
+            <div class="extra-title">+5.85</div>
+          </div>
+          <div class="box">
+            <div class="info">
+              <div class="image">
+                <img src="/Indiabulls.png" alt="Indiabulls" style="width: 40px; height: 40px; border-radius: 50px;">
+              </div>
+              <div class="title-box">
+                <div class="title">Indiabulls</div>
+                <div class="subtitle">Finance</div>
+              </div>
+            </div>
+            <div class="extra-title">+12</div>
+          </div>
+          <div class="box">
+            <div class="info">
+              <div class="image">
+                <img src="/Tesla.png" alt="Tesla" style="width: 40px; height: 40px; border-radius: 50px;">
+              </div>
+              <div class="title-box">
+                <div class="title">Tesla</div>
+                <div class="subtitle">Automotive</div>
+              </div>
+            </div>
+            <div class="extra-title">+8.56</div>
+          </div>
+        </div>
+      </div>
+
+    <!--Trending Section-->
+    <div class="container">
+        <div class="Trending">
+            <h2>Trending</h2>
+        </div>
+    </div>
+    <div class="trending-container">
+        <div class="trending-box">
+            <div class="box">
+                <div class="trending-content">
+                    <div class="info">
+                        <div class="image">
+                            <img src="/sbi.png" alt="Adani" style="width: 40px; height: 40px; border-radius: 50px;">
+                        </div>
+                        <div class="title-box">
+                            <div class="title">SBI Life Insurance</div>
+                            <div class="subtitle">Insurance</div>
+                        </div>
+                    </div>
+                    <div class="trending-extra-title">+8.38%</div>
+                </div>
+            </div>
+            <button class="watch-market-button" ><a class="d" href="watchmarket.html" >Watch Market</a> </button>
+        </div>
+    
+        <div class="trending-box">
+            <div class="box">
+                <div class="trending-content">
+                    <div class="info">
+                        <div class="image">
+                            <img src="/tata.png" alt="Adani" style="width: 40px; height: 40px; border-radius: 50px;">
+                        </div>
+                        <div class="title-box">
+                            <div class="title">Tata Motors</div>
+                            <div class="subtitle">Automotive</div>
+                        </div>
+                    </div>
+                    <div class="trending-extra-title">+9.34%</div>
+                </div>
+            </div>
+            <button class="watch-market-button"><a class="d1" href="watchmarket.html" >Watch Market</a></button>
+        </div>
+    
+        <div class="trending-box">
+            <div class="box">
+                <div class="trending-content">
+                    <div class="info">
+                        <div class="image">
+                            <img src="/pidilite.png" alt="Adani" style="width: 40px; height: 40px; border-radius: 50px;">
+                        </div>
+                        <div class="title-box">
+                            <div class="title">Pidilite Industries</div>
+                            <div class="subtitle">manufacturing</div>
+                        </div>
+                    </div>
+                    <div class="trending-extra-title">+1.34%</div>
+                </div>
+            </div>
+            <button class="watch-market-button"><a class="d2" href="watchmarket.html" >Watch Market</a></button>
+        </div>
+    
+        <div class="trending-box">
+            <div class="box">
+                <div class="trending-content">
+                    <div class="info">
+                        <div class="image">
+                            <img src="/lucid.png" alt="Adani" style="width: 40px; height: 40px; border-radius: 50px;">
+                        </div>
+                        <div class="title-box">
+                            <div class="title">Lucid Motors</div>
+                            <div class="subtitle">Automotive</div>
+                        </div>
+                    </div>
+                    <div class="trending-extra-title">+9.44%</div>
+                </div>
+            </div>
+            <button class="watch-market-button"><a class="d3" href="watchmarket.html" >Watch Market</a></button>
+        </div>
+    </div>
+
+    <!--Stocks Section-->
+    <div class="container">
+        <div class="Stocks">
+            <h2>Stocks</h2>
+        </div>
+    </div>
+    <div class="stocks-container">
+        <div class="stocks-header">
+            <div class="stock-item">Stocks</div>
+            <div class="stock-item">Sectors</div>
+            <div class="stock-item">Growth</div>
+            <div class="stock-item">Value</div>
+        </div>
+        <div class="stock-row">
+            <div class="stock-item">Adani Enterprises</div>
+            <div class="stock-item">Mining</div>
+            <div class="stock-item">+12.56%</div>
+            <div class="stock-item">875.5</div>
+        </div>
+        <div class="stock-row">
+            <div class="stock-item">Infosys</div>
+            <div class="stock-item">IT</div>
+            <div class="stock-item">-2.34%</div>
+            <div class="stock-item">458.59</div>
+        </div>
+        <div class="stock-row">
+            <div class="stock-item">Indiabulls</div>
+            <div class="stock-item">Finance</div>
+            <div class="stock-item">+3.56%</div>
+            <div class="stock-item">945.85</div>
+        </div>
+        <div class="stock-row">
+            <div class="stock-item">Tesla</div>
+            <div class="stock-item">Automotive</div>
+            <div class="stock-item">+2.34%</div>
+            <div class="stock-item">488.75</div>
+        </div>
+        <div class="stock-row">
+            <div class="stock-item">SBI Life Insurance</div>
+            <div class="stock-item">Insurance</div>
+            <div class="stock-item">-8.38%</div>
+            <div class="stock-item">578.5</div>
+        </div>
+        <div class="stock-row">
+            <div class="stock-item">Tata Motors</div>
+            <div class="stock-item">Automotive</div>
+            <div class="stock-item">+9.34%</div>
+            <div class="stock-item">498.45</div>
+        </div>
+        <div class="stock-row">
+            <div class="stock-item">Havells</div>
+            <div class="stock-item">Electrical</div>
+            <div class="stock-item">+1.34%</div>
+            <div class="stock-item">396.85</div>
+        </div>
+        <div class="stock-row">
+            <div class="stock-item">Lucid Motors</div>
+            <div class="stock-item">Automotive</div>
+            <div class="stock-item">+9.44%</div>
+            <div class="stock-item">856.24</div>
+        </div>
+        <div class="stock-row">
+            <div class="stock-item">Ather</div>
+            <div class="stock-item">Automotive</div>
+            <div class="stock-item">+12.84%</div>
+            <div class="stock-item">975.85</div>
+        </div>
+    </div>
+    
+    <!--Footer Section-->
+    <footer class="footer">
+        <!-- Column 1: About -->
+        <div class="column">
+            <h3>About</h3>
+            <img class="footer-logo" src="/tds.png" alt="TDS">
+            <p>TraDalgoS is a algorithmic trading company dedicated to leveraging cutting-edge technology & data-driven strategies to optimize trading performance in financial...</p>
+            <a href="about.html" class="about-button">About Us</a>
+        </div>
+
+        <!-- Column 2: Feedback -->
+        <div class="column">
+            <h3>Feedback</h3>
+            <form class="feedback-form" onsubmit="submitFeedback(event)">
+                <div class="textarea-container">
+                    <textarea placeholder="Enter your feedback" required></textarea>
+                </div>
+                <p class="form-message"></p>
+                <button type="submit" class="form-button">Submit</button>
+                <p class="form-message">Your feedback is submitted</p>
+            </form>
+        </div>
+
+        <!-- Column 3: Menu -->
+        <div class="column">
+            <h3>Menu</h3>
+            <ul class="menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="stocks.html">Stocks</a></li>
+                <li><a href="algo.html">Algo</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Profile.html">Profile</a></li>
+            </ul>
+            <div class="social-media-container">
+                <a href="#"><span class="social-media-icon">
+                    <img src="/facebook.png" alt="facebook" style="height: 40px; width: 40px;">
+                </span></a>
+                <a href="#"><span class="social-media-icon">
+                    <img src="/twitter.png" alt="twitter" style="height: 40px; width: 40px;">
+                </span></a>
+                <a href="#"><span class="social-media-icon">
+                    <img src="/instagram.png" alt="instagram" style="height: 40px; width: 40px;">
+                </span></a>
+            </div>
+        </div>
+
+        <!-- Copyright Notice -->
+        <div class="copyright">
+            <p>&copy; 2024 TraDalgoS. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to submit feedback
+        function submitFeedback(event) {
+            event.preventDefault();
+    
+            var feedbackText = document.querySelector('.feedback-form textarea').value.trim();
+    
+            if (feedbackText === '') {
+                document.querySelector('.form-message').textContent = 'Please Enter Your Feedback!';
+                document.querySelector('.form-message').classList.add('error');
+            } else {
+                setTimeout(function() {
+                    document.querySelector('.feedback-form').reset();
+                    document.querySelector('.form-message').textContent = 'Your feedback is submitted.';
+                    document.querySelector('.form-message').classList.remove('error');
+                    document.querySelector('.form-message').style.display = 'block';
+                    setTimeout(function() {
+                        document.querySelector('.form-message').style.display = 'none';
+                    }, 3000);
+                }, 1000);
+            }
+        }
+    </script>
+    
+    <!--Javascript Code For Growth-->
+    <script>
+        const stockItems = document.querySelectorAll('.stock-item');
+
+        stockItems.forEach(item => {
+        const growthText = item.textContent.trim();
+
+        if (growthText.includes('+')) {
+            item.classList.add('positive-growth');
+        } else if (growthText.includes('-')) {
+            item.classList.add('negative-growth');
+        }
+        });
+
+    </script>
+
+    <!--Javascript For Menu-->
+    <script>
+        function toggleMenu() {
+            var menu = document.querySelector('.menu');
+            menu.classList.toggle('show-menu');
+        }
+    </script>
+
+</body>
+</html>

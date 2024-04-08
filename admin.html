@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="admin.css">
+    
+    <title>Welcome Admin</title>
+    
+</head>
+<body>
+
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="Profile.png" alt="Logo">
+    </div>
+    <div class="logout">
+      <button onclick="mov()"><i class="fa fa-sign-out"></i>&nbsp;LOGOUT</button>
+    </div>
+  </nav>
+
+
+
+  <div class="sidenav">
+    <button class="dropdown-btn">STOCKS
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="#">Add Stock</a>
+      <a href="#">Update Stock</a>
+      <a href="#">Remove Stock</a>
+    </div>
+    <button class="dropdown-btn">IPO
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="#">Add IPO</a>
+      <a href="#">Update IPO</a>
+      <a href="#">Remove IPO</a>
+    </div>
+    <button class="dropdown-btn">BLOGS
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="#">Post Blog</a>
+      <a href="#">Remove Blog</a>
+    </div>
+    <button class="dropdown-btn">USERS
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="#">Add User</a>
+          <a href="#">Remove User</a>
+    </div>
+  </div>
+  
+  <div class="main">
+  <h2>Welcome Admin</h2>
+   <br>
+  <h2 class="design">Area Chart</h2>
+  <br>
+  <div class="tradingview-widget-container" >
+  <div id="basic-area-chart-demo" ></div></div>
+
+
+ <br>
+<h2 class="design">Real Time Chart</h2>
+<br>
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+    {
+    "autosize": true,
+    "symbol": "NASDAQ:AAPL",
+    "interval": "D",
+    "timezone": "Etc/UTC",
+    "theme": "light",
+    "style": "1",
+    "locale": "en",
+    "enable_publishing": false,
+    "allow_symbol_change": true,
+    "calendar": false,
+    "support_host": "https://www.tradingview.com"
+  }
+    </script>
+</div> 
+<br>
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+  "symbols": [
+    {
+      "proName": "FOREXCOM:SPXUSD",
+      "title": "S&P 500 Index"
+    },
+    {
+      "proName": "FOREXCOM:NSXUSD",
+      "title": "US 100 Cash CFD"
+    },
+    {
+      "proName": "FX_IDC:EURUSD",
+      "title": "EUR to USD"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "Bitcoin"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "Ethereum"
+    }
+  ],
+  "showSymbolLogo": true,
+  "isTransparent": false,
+  "displayMode": "adaptive",
+  "colorTheme": "light",
+  "locale": "en"
+}
+  </script>
+</div>
+
+
+  </div>
+  <script src="https://s3.tradingview.com/tv.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

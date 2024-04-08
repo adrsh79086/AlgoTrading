@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Market</title>
+
+    <!---Style For Header Section---->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #212121;
+            padding: 10px 20px;
+        }
+        .logo img {
+            width: 100px;
+        }
+        .menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+        }
+        .menu li {
+            margin-right: 20px;
+            margin: 15px;
+        }
+        .menu li:last-child {
+            margin-right: 0;
+        }
+        .menu a {
+            text-decoration: none;
+            color: #f1f1f1;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .menu a:hover {
+            color: #4CAF50; 
+        }
+
+        .menu-icon {
+            display: none; 
+        }
+        @media only screen and (max-width: 768px) {
+            .menu {
+                display: none; 
+            }
+            .menu.show-menu {
+                display: flex; 
+                flex-direction: column; 
+                position: absolute;
+                top: 75px; 
+                left: 300px; 
+                background-color: #f1f1f1; 
+                border-radius: 5px; 
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+                padding: 10px;
+            }
+            .menu-icon {
+                display: block; 
+            }
+            .menu-icon img {
+                width: 30px; 
+                cursor: pointer;
+            }
+        }
+    </style>
+
+    <!--Style For Footer Section-->
+        <style>
+            .footer {
+                background-color: #212121;
+                padding: 20px;
+                text-align: left;
+                display: flex;
+                color: #f1f1f1;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+
+            .column {
+                flex-basis: 30%;
+                margin-bottom: 20px;
+            }
+
+            .feedback-form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-message {
+                display: none;
+            }
+
+            .textarea-container {
+                margin-bottom: 10px;
+                align-self: flex-start; 
+                text-align: start; 
+            }
+
+            .textarea-container textarea {
+                width: 200%;
+                height: 100px;
+                resize: none;
+            }
+
+            .form-button {
+                width: 100px;
+                padding: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .form-button:hover {
+                background-color: #45a049;
+            }
+
+            .form-message {
+                color: green;
+            }
+
+            .form-message.error {
+                color: red;
+            }
+
+            .footer-logo {
+                width: 80px;
+                margin-bottom: 10px;
+            }
+
+            .column p {
+                text-align: justify;
+            }
+
+            .about-button {
+                width: 100px;
+                padding: 10px;
+                font-size: 12px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                text-decoration: none;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .about-button:hover {
+                background-color: #45a049;
+            }
+
+            .menu {
+                list-style-type: none;
+                padding: 0;
+                margin-top: 10px;
+            }
+
+            .menu li {
+                display: inline;
+                margin-right: 10px;
+            }
+
+            .menu li a {
+                text-decoration: none;
+                color: #7c7b7b;
+                transition: color 0.3s;
+            }
+
+            .footer .menu li a:hover {
+                color: #4CAF50;
+            }
+
+
+            .social-media-container {
+                display: flex;
+                justify-content: start;
+                margin-top: 20px;
+            }
+
+            .social-media-icon {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 24px;
+                color: #212121;
+                background-color: #ddd;
+                border-radius: 50%;
+                margin-right: 10px;
+                text-align: center;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            @media only screen and (max-width: 768px) {
+                .footer .column {
+                flex-basis: 100%;
+                text-align: center;
+                align-items: center;
+            }
+
+            .social-media-container {
+                display: flex;
+                justify-content: center; 
+                margin-top: 20px;
+            }
+
+            .textarea-container {
+                width: 50%;
+                margin-bottom: 10px;
+                margin-right: auto;
+                align-self: center; 
+                text-align: center; 
+            }
+
+            .footer .menu {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+            }
+
+            .footer .menu li {
+                margin-bottom: 10px;
+            }
+
+            .footer .menu li a {
+                color: #7c7b7b;
+            }
+
+        }
+
+    </style>
+
+    <!--Style For Buy and Sell Buttons -->
+    <style>
+        .trading-options {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .buy-button,
+        .sell-button {
+            padding: 12px 24px;
+            margin: 0 10px;
+            width: 300px;
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .sell-button {
+            background-color: rgb(211, 3, 3);
+        }
+        .sell-button:hover {
+            background-color: rgb(181, 6, 6);
+        }
+
+        .buy-button {
+            background-color: #4CAF50;
+        }
+        .buy-button:hover {
+            background-color: #45a049;
+        }
+
+        .number-input {
+            margin-bottom: 25px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .number-input input {
+            padding: 12px 24px;
+            margin: 0 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+    @media only screen and (max-width: 768px) {
+    
+        .buy-button,
+        .sell-button {
+            padding: 10px 20px;
+            width: calc(50% - 20px); 
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .number-input {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .number-input input {
+            padding: 10px 20px;
+            width: calc(50% - 20px); 
+            font-size: 14px;
+        }
+        .trading-options {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    </style>
+
+    <!--Header Section-->
+    <header class="header">
+        <div class="logo">
+            <img src="tds.png" alt="TDS Logo">
+        </div>
+        <ul class="menu">
+             <li><a href="mainDashboard.html">Dashboard</a></li>
+            <li><a href="A1.html">About</a></li>
+            <li><a href="stocks.html">Stocks</a></li>
+            <li><a href="algo.html">Algo</a></li>
+            <li><a href="C1.html">Contact</a></li>
+            <li><a href="profile.html">Profile</a></li>
+        </ul>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <img src="/menu-icon.png" alt="Menu">
+        </div>
+    </header>
+
+    <!--Trading View Section-->
+    <div class="tradingview-widget-container" style="height: 600px; width: 100%;">
+    <div class="tradingview-widget-container__widget" style="height: calc(100% - 32px); width: 100%"></div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+    {
+        "autosize"; true,
+        "symbol"; "NASDAQ:AAPL",
+        "timezone"; "Etc/UTC",
+        "theme"; "light",
+        "style"; "1",
+        "locale"; "en",
+        "enable_publishing"; false,
+        "withdateranges"; true,
+        "range"; "YTD",
+        "hide_side_toolbar"; false,
+        "allow_symbol_change"; true,
+        "details"; true,
+        "hotlist"; true,
+        "calendar"; false,
+        "support_host"; "https://www.tradingview.com"
+    }
+    </script>
+    </div>
+
+    <div class="number-input">
+        <input type="number" id="buyQuantity" placeholder="Quantity" required>
+        <input type="number" id="sellQuantity" placeholder="Quantity" required>
+    </div>
+
+    <!--Buy and Sell Buttons Section-->
+    <div class="trading-options">
+        <button class="buy-button" onclick="buyStock()">Buy</button>
+        <button class="sell-button" onclick="sellStock()">Sell</button>
+    </div>
+
+    <!--Footer Section-->
+    <footer class="footer">
+        <!-- Column 1: About -->
+        <div class="column">
+            <h3>About</h3>
+            <img class="footer-logo" src="/tds.png" alt="TDS">
+            <p>TraDalgoS is a algorithmic trading company dedicated to leveraging cutting-edge technology & data-driven strategies to optimize trading performance in financial...</p>
+            <a href="about.html" class="about-button">About Us</a>
+        </div>
+
+        <!-- Column 2: Feedback -->
+        <div class="column">
+            <h3>Feedback</h3>
+            <form class="feedback-form" onsubmit="submitFeedback(event)">
+                <div class="textarea-container">
+                    <textarea placeholder="Enter your feedback" required></textarea>
+                </div>
+                <p class="form-message"></p>
+                <button type="submit" class="form-button">Submit</button>
+                <p class="form-message">Your feedback is submitted</p>
+            </form>
+        </div>
+
+        <!-- Column 3: Menu -->
+        <div class="column">
+            <h3>Menu</h3>
+            <ul class="menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="stocks.html">Stocks</a></li>
+                <li><a href="algo.html">Algo</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Profile.html">Profile</a></li>
+            </ul>
+            <div class="social-media-container">
+                <a href="#"><span class="social-media-icon">
+                    <img src="/facebook.png" alt="facebook" style="height: 40px; width: 40px;">
+                </span></a>
+                <a href="#"><span class="social-media-icon">
+                    <img src="/twitter.png" alt="twitter" style="height: 40px; width: 40px;">
+                </span></a>
+                <a href="#"><span class="social-media-icon">
+                    <img src="/instagram.png" alt="instagram" style="height: 40px; width: 40px;">
+                </span></a>
+            </div>
+        </div>
+
+        <!-- Copyright Notice -->
+        <div class="copyright">
+            <p>&copy; 2024 TraDalgoS. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to submit feedback
+        function submitFeedback(event) {
+            event.preventDefault();
+    
+            var feedbackText = document.querySelector('.feedback-form textarea').value.trim();
+    
+            if (feedbackText === '') {
+                document.querySelector('.form-message').textContent = 'Please Enter Your Feedback!';
+                document.querySelector('.form-message').classList.add('error');
+            } else {
+                setTimeout(function() {
+                    document.querySelector('.feedback-form').reset();
+                    document.querySelector('.form-message').textContent = 'Your feedback is submitted.';
+                    document.querySelector('.form-message').classList.remove('error');
+                    document.querySelector('.form-message').style.display = 'block';
+                    setTimeout(function() {
+                        document.querySelector('.form-message').style.display = 'none';
+                    }, 3000);
+                }, 1000);
+            }
+        }
+    </script>
+
+    <!--JavaScript Code For Buttons-->
+    <script>
+        function buyStock() {
+            var buyQuantity = document.getElementById('buyQuantity').value.trim();
+            if (buyQuantity === '') {
+                alert('Please enter quantity for buying stocks.');
+            } else {
+                alert('Buying ' + buyQuantity + ' stocks.');
+                document.getElementById('buyQuantity').value = '';
+            }
+        }
+
+        function sellStock() {
+            var sellQuantity = document.getElementById('sellQuantity').value.trim();
+            if (sellQuantity === '') {
+                alert('Please enter quantity for selling stocks.');
+            } else {
+                alert('Selling ' + sellQuantity + ' stocks.');
+                document.getElementById('sellQuantity').value = '';
+            }
+        }
+    </script>
+
+    <!--Javascript For Menu Toggle-->
+    <script>
+        function toggleMenu() {
+            var menu = document.querySelector('.menu');
+            menu.classList.toggle('show-menu');
+        }
+    </script>

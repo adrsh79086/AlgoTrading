@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            
+        }
+
+        .navbar-logo img {
+            width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        h4 {
+         text-align: center;
+         color: black;
+         background-color: rgb(145, 89, 105);
+         padding: 10px; /* Increased padding */
+}
+
+        .strategy button {
+            padding: 6px 20px; /* Adjust button padding for mobile */
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 200px;
+            margin-left: 0%;
+        }
+
+        .strategy button:hover {
+            background-color: #0056b3;
+        }
+
+        .codeDisplay {
+            display: none;
+            background-color: #444444;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        pre {
+            margin: 0;
+            color: rgb(241, 83, 83);
+            /* Set text color to white */
+        }
+
+        button {
+            padding: 6px 20px; /* Adjust button padding for mobile */
+            background-color: #007bff;
+            color: #d1b3b3;
+            border: none;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="navbar-logo">
+                    <img src="TDS.png" alt="Logo">
+                    <h3 style="color:rgb(60, 143, 30)">Algorithm Trading Strategies</h3>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="mainDashboard.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="stocks.html">Back</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="strategy" id="movingAverageCrossover"><br>
+                    <h4>Moving Average Crossover</h4>
+                    <div class="codeDisplay">
+                        <pre><code>function movingAverageCrossover() {
+ // Implementation of Moving Average Crossover strategy
+                        }</code></pre>
+                    </div>
+                    <button onclick="showCode('movingAverageCrossover')">Show Code</button>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="strategy" id="meanReversion"><br>
+                    <h4>Mean Reversion</h4>
+                    <button onclick="showCode('meanReversion')">Show Code</button>
+                    <div class="codeDisplay">
+                        <pre><code>function meanReversion() {
+// Implementation of Mean Reversion strategy
+                        }</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="strategy" id="momentumTrading"><br>
+                    <h4>Momentum Trading</h4>
+                    <button onclick="showCode('momentumTrading')">Show Code</button>
+                    <div class="codeDisplay">
+                        <pre><code>function momentumTrading() {
+// Implementation of Momentum Trading strategy
+                        }</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="strategy" id="pairsTrading"><br>
+                    <h4>Pairs Trading</h4>
+                    <button onclick="showCode('pairsTrading')">Show Code</button>
+                    <div class="codeDisplay">
+                        <pre><code>function pairsTrading() {
+// Implementation of Pairs Trading strategy
+                        }</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="strategy" id="breakoutTrading"><br>
+            
+                    <h4>Breakout Trading</h4>
+                    <button onclick="showCode('breakoutTrading')">Show Code</button>
+                    <div class="codeDisplay">
+                        <pre><code>function breakoutTrading() {
+// Implementation of Breakout Trading strategy
+                        }</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="codeDisplay"></div>
+    </div>
+
+    <script>
+        function showCode(strategyId) {
+            const codeDisplay = document.getElementById('codeDisplay');
+            const strategyElement = document.getElementById(strategyId);
+            const code = strategyElement.querySelector('.codeDisplay').innerHTML;
+
+            if (codeDisplay.style.display === 'block' && codeDisplay.innerHTML.includes(code)) {
+                codeDisplay.style.display = 'none';
+                codeDisplay.innerHTML = '';
+            } else {
+                codeDisplay.style.display = 'block';
+                codeDisplay.innerHTML = code;
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

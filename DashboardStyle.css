@@ -1,0 +1,253 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: beige;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: center;
+    justify-content: center; */
+
+    /* background: linear-gradient(135deg, #A367B1, #FFD1E3, #5D3587); */
+
+}
+
+.left-dash{
+    width: 300px;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+
+}
+
+.right-dash{
+    /* width:auto;
+    height: 100%; */
+    /* flex: 1; */
+    /* width: 70vw;
+    height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
+.topdiv{
+    display: flex;
+    /* width: 60vw;
+    height: 35vh; */
+
+
+}
+
+.bottomdiv{
+    /* width: 60vw;
+    height: 25vh; */
+    margin-top: 5px;
+}
+
+.upperDiv{
+    width: 75vw;
+    height: 85vh;
+    margin-left: 5px;
+    margin-top: 5vh;
+    /* margin-top: 10vh;
+    border-radius: 20px; */
+}
+
+.lowerDiv{
+    /* width: 75vw;
+    height: 30vh; */
+    margin-left: 5px;
+}
+
+.logo{
+    /* mix-blend-mode: multiply; */
+    display: flex;
+    /* flex-direction: row; */
+    align-items: center;
+    justify-content: center;
+    /* margin-top: 30px; */
+    /* width: 100%; */
+    /* height: 50%; */
+    /* height: auto; */
+}
+
+.rest-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 5px;
+    /* width: 100%; */
+    /* height: auto; */
+}
+
+.dash-content{
+    /* margin-left: auto; */
+    margin-top: 10px;
+    /* width: 300px; */
+}
+
+button{
+    /* margin-top: none; */
+    
+    height: 50px;
+    width: 300px;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    color: rgb(8, 212, 127);
+    border: none;
+    outline: none;
+    text-align: center;
+    color: #f1f1f1;
+    /* transition: all 0.5s; */
+    box-shadow: 0 5px #739072;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: #16a11d;
+}
+
+button:active{
+    background-color: #7360DF;
+    box-shadow: 0 2px #4F6F52;
+    transform: translateY(4px);
+}
+
+.tdsLogo{
+    width: 300px;
+    /* height: 322px; */
+    margin: 0;
+    padding: 0;
+    mix-blend-mode: multiply;
+}
+
+.leftOne{
+    width: 50vw;
+    height: 60vh;
+    /* mix-blend-mode: multiply; */
+}
+
+.rightOne{
+    width: 25vw;
+    height: 60vh;
+    /* mix-blend-mode: multiply; */
+}
+
+.piOne{
+    width: 75vw;
+    height: 45vh;
+    /* mix-blend-mode: multiply; */
+}
+
+
+
+/* for tablet */
+@media only screen and (max-width:1240px){
+
+    .container{
+        /* display: flex; */
+        flex-direction: column;
+    }
+    .left-dash{
+        flex-direction: row;
+        width: 100%;
+        /* height: 300px; */
+        height: auto;
+
+    }
+    .right-dash{
+        width:100%;
+        height: auto;
+    }
+    .logo{
+        /* margin-top: 30px; */
+        width: 280px;
+        margin: 0;
+        padding: 0;
+    }
+    .tdsLogo{
+        width: 280px;
+    }
+    .rest-content{
+        /* display: flex; */
+        flex-direction: row;
+        /* align-items: center; */
+        /* justify-content: center; */
+        /* width: 100%; */
+        /* height: 50%; */
+        /* margin-top: 8px; */
+       
+    }
+    button{
+        width: 100px;
+        height: 40px;
+    }
+    .dash-content{
+        margin-left: 5px;
+    }
+    .upperDiv{
+        width: 1200px;
+        height: 60vh;
+    }
+    .lowerDiv{
+        width: 1200px;
+        /* height: 50px; */
+    }
+}
+
+/* for mobile */
+@media only screen and (max-width:480px){
+    
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+    .left-dash{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .tdsLogo{
+        width: 160px;
+    }
+    .rest-content{
+        display: flex;
+        flex-direction: column;
+        /* align-items: center;
+        justify-content: center; */
+        width: 100%;
+        /* height: 50%; */
+        margin-top: 10px;
+       
+    }
+    .dash-content{
+        /* margin-top: 15px; */
+        margin-left: 5px;
+    }
+    button{
+        /* margin-top: none; */
+        height: 15vw;
+        width:90vw;
+        border-radius: 10px;
+    }
+    .upperDiv{
+        width: 450px;
+        height: 60vh;
+    }
+    .lowerDiv{
+        width: 450px;
+        /* height: 50px; */
+    }
+}
+
